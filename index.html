@@ -4,104 +4,161 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Banana — A shared to-do list for two</title>
-  <meta name="description" content="Banana is a beautifully simple shared to-do list for couples, partners, roommates, and small teams. Stay in sync on tasks without the noise." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E" />
+  <meta name="description" content="Banana is a beautifully simple shared to-do list for couples, partners, roommates, and small teams. Stay in sync on the everyday stuff — without the noise." />
+  <meta property="og:title" content="Banana — A shared to-do list for two" />
+  <meta property="og:description" content="Stay in sync on the everyday stuff. Available on the App Store." />
+  <meta property="og:url" content="https://usebanana.app" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#FFFCF9" />
+  <!-- Favicon: same illustrated banana mark used in the iOS app -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 19'%3E%3Cpath d='M3.84729 1.90096C5.08379 0.672387 8.02233 0.627667 8.72485 2.21876C9.20567 3.30773 8.65683 4.21719 7.92525 5.15832C6.97527 6.38041 5.60968 7.41045 4.24709 6.66783C2.71393 5.83223 2.6108 3.12954 3.84729 1.90096Z' fill='%23332727'/%3E%3Cpath d='M18.9584 16.956C17.7219 18.1846 14.7834 18.2293 14.0809 16.6382C13.6 15.5492 14.8221 14.335 15.5537 13.3938C16.5037 12.1718 17.5958 7.56656 18.9584 8.30919C20.4916 9.14478 20.1949 15.7274 18.9584 16.956Z' fill='%23332727'/%3E%3Cpath d='M3.84729 8.73754C4.41001 8.17942 4.98252 8.92725 7 8C9.41572 6.88971 10.0241 2.82731 10.3563 2.03282C11.0272 0.428525 17.3928 1 18.8321 2.90674C19.3701 3.61949 15.7948 10.6101 12.5 14.4285C9.37505 18.05 6.62074 17.9863 4.05188 17.4458C3.16005 17.2582 2.6108 9.96396 3.84729 8.73754Z' fill='%23FFBB73'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Shared SVG defs — referenced by <use> below -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="logo-mark" viewBox="0 0 22 19">
+        <path d="M3.84729 1.90096C5.08379 0.672387 8.02233 0.627667 8.72485 2.21876C9.20567 3.30773 8.65683 4.21719 7.92525 5.15832C6.97527 6.38041 5.60968 7.41045 4.24709 6.66783C2.71393 5.83223 2.6108 3.12954 3.84729 1.90096Z" fill="#332727"/>
+        <path d="M18.9584 16.956C17.7219 18.1846 14.7834 18.2293 14.0809 16.6382C13.6 15.5492 14.8221 14.335 15.5537 13.3938C16.5037 12.1718 17.5958 7.56656 18.9584 8.30919C20.4916 9.14478 20.1949 15.7274 18.9584 16.956Z" fill="#332727"/>
+        <path d="M3.84729 8.73754C4.41001 8.17942 4.98252 8.92725 7 8C9.41572 6.88971 10.0241 2.82731 10.3563 2.03282C11.0272 0.428525 17.3928 1 18.8321 2.90674C19.3701 3.61949 15.7948 10.6101 12.5 14.4285C9.37505 18.05 6.62074 17.9863 4.05188 17.4458C3.16005 17.2582 2.6108 9.96396 3.84729 8.73754Z" fill="#FFBB73"/>
+      </symbol>
+      <symbol id="apple-logo" viewBox="0 0 24 24">
+        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <header class="site-header">
     <a class="logo" href="/">
-      <span class="logo-mark" aria-hidden="true">🍌</span>
+      <svg class="logo-svg" aria-hidden="true"><use href="#logo-mark"/></svg>
       <span class="logo-text">Banana</span>
     </a>
     <nav class="site-nav">
       <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#how">How it works</a>
       <a href="mailto:help@usebanana.app">Contact</a>
     </nav>
   </header>
 
   <main>
+    <!-- ============== HERO ============== -->
     <section class="hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">
-          A shared to-do list<br />
-          <span class="hero-accent">for two.</span>
-        </h1>
-        <p class="hero-sub">
-          Banana keeps couples, roommates, and small teams in sync on the everyday stuff —
-          without the noise of a full project management app.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#">Download on the App Store</a>
-          <span class="hero-note">Coming soon to iOS</span>
+      <div class="hero-layout">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            A shared to-do list<br />
+            <span class="hero-accent">for two.</span>
+          </h1>
+          <p class="hero-sub">
+            Banana keeps couples, roommates, and small teams in sync on the everyday stuff — without the noise of a full project app.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id6761231329" target="_blank" rel="noopener">
+              <svg class="btn-icon" aria-hidden="true"><use href="#apple-logo"/></svg>
+              <span class="btn-label">
+                <span class="btn-tiny">Download on the</span>
+                <span class="btn-big">App Store</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img src="phone-screenshot.png" alt="Banana home screen showing three shared tasks: Summer tires, Get groceries for party, and Water garden." />
+            </div>
+          </div>
         </div>
       </div>
       <div class="hero-glow" aria-hidden="true"></div>
     </section>
 
+    <!-- ============== HOW IT WORKS ============== -->
+    <section id="how" class="steps">
+      <div class="section-header">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps to in&#8209;sync.</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <h3>Download Banana</h3>
+          <p>Free on the App Store. Takes 30 seconds.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <h3>Invite your partner</h3>
+          <p>Share a link from inside the app. One tap and you're connected.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <h3>Stay in sync</h3>
+          <p>Add tasks together. Get nudged at the right time. Knock them out.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FEATURES ============== -->
     <section id="features" class="features">
       <div class="section-header">
         <span class="eyebrow">What's inside</span>
         <h2>Small features, sweated over.</h2>
       </div>
       <div class="feature-grid">
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">🤝</div>
           <h3>Linked accounts</h3>
-          <p>Pair up with one person. Share tasks, assign work, and see what's been done — all without group-chat overload.</p>
+          <p>Pair up with one person. Share tasks, assign work, and see what's been done — all without group&#8209;chat overload.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">✨</div>
           <h3>Smart parsing</h3>
           <p>Type "remind Andi to call the plumber Friday" and Banana fills in the title, assignee, and due date for you.</p>
+          <span class="feature-tag">Powered by Claude Haiku</span>
         </article>
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">🔔</div>
           <h3>Gentle reminders</h3>
           <p>Set a reminder on any task. Banana nudges you and anyone it's assigned to at the right time.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">🌅</div>
           <h3>My Day</h3>
           <p>Cut the noise. See only what's yours, today and overdue. Everything else stays out of the way.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">📜</div>
           <h3>Activity history</h3>
           <p>Know who did what and when. No more "I thought you were doing that."</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card reveal">
           <div class="feature-icon">🏷️</div>
           <h3>Keywords</h3>
-          <p>Tag tasks with anything that matters to you — groceries, kids, the renovation. Filter to focus.</p>
+          <p>Tag tasks with anything that matters — groceries, kids, the renovation. Filter to focus.</p>
         </article>
       </div>
     </section>
 
-    <section id="pricing" class="pricing">
-      <div class="section-header">
-        <span class="eyebrow">Pricing</span>
-        <h2>Free to try.<br />A small price to share.</h2>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Solo</h3>
-          <div class="price-amount">Free</div>
-          <p>Use Banana for your own tasks. Unlimited everything.</p>
-        </div>
-        <div class="price-card price-card-featured">
-          <div class="price-badge">For two</div>
-          <h3>Linked</h3>
-          <div class="price-amount">$1.99<span class="price-period">/month</span></div>
-          <p>Connect with a partner. Shared tasks, sync, and activity history.</p>
-        </div>
+    <!-- ============== CTA BANNER ============== -->
+    <section class="cta-banner reveal">
+      <div class="cta-inner">
+        <h2>Ready to peel?</h2>
+        <p>Get Banana on your iPhone — it's free.</p>
+        <a class="btn btn-primary btn-lg" href="https://apps.apple.com/app/id6761231329" target="_blank" rel="noopener">
+          <svg class="btn-icon" aria-hidden="true"><use href="#apple-logo"/></svg>
+          <span class="btn-label">
+            <span class="btn-tiny">Download on the</span>
+            <span class="btn-big">App Store</span>
+          </span>
+        </a>
       </div>
     </section>
 
+    <!-- ============== CLOSING ============== -->
     <section class="closing">
       <div class="closing-inner">
         <h2>Built for everyday life,<br />not enterprise sprints.</h2>
@@ -113,7 +170,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="logo-mark" aria-hidden="true">🍌</span>
+        <svg class="logo-svg" aria-hidden="true"><use href="#logo-mark"/></svg>
         <span>Banana</span>
       </div>
       <nav class="footer-nav">
@@ -124,5 +181,26 @@
       <div class="footer-meta">© 2026 Banana</div>
     </div>
   </footer>
+
+  <!-- Reveal-on-scroll. Respects prefers-reduced-motion (CSS gate). -->
+  <script>
+    (function () {
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      els.forEach(function (el) { obs.observe(el); });
+    })();
+  </script>
 </body>
 </html>
